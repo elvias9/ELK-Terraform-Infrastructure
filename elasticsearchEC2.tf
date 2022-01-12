@@ -1,5 +1,19 @@
+module "network" {
+  source = "/vpc"
+  name = "my_vpc"
+  vpc_cidr         = "10.0.0.0/16"
+  region           = "eu-west-1"
+  vpc_name         = "ELK-Stack-VPC"
+  internet_gw_name = "team1-new-INT-GW"
+  public_cidr_a    = "10.10.0.0/24"
+  private_cidr_a = "10.10.2.0/24"
+  private_cidr_b = "10.10.4.0/24"
+  enable_nat_gateway  = true
+  single_nat_gateway = true
+}
+
 resource "aws_security_group" "private_elasticsearch_sg" {
- #vpc_id      = module.network.my_vpc_id
+ vpc_id      = module.network.my_vpc_id
 
   # INBOUND RULES
   ingress {
@@ -7,7 +21,6 @@ resource "aws_security_group" "private_elasticsearch_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    /* put the private subnet cidr or ["0.0.0.0/0"] ???*/
     cidr_blocks = ["10.10.0.0/16"]
   }
 
@@ -16,8 +29,8 @@ resource "aws_security_group" "private_elasticsearch_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    /* put the private subnet cidr */
-    cidr_blocks = ["10.10.0.0/16"]
+    /* put the private subnet cidr  or VPC????*/
+    cidr_blocks = ["10.10.2.0/24"]
   }
 
   ingress {
@@ -43,8 +56,8 @@ resource "aws_security_group" "private_elasticsearch_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    /* put the vpc cidr block */
-    cidr_blocks = ["10.200.0.0/16"]
+    /* vpc cidr block */
+    cidr_blocks = ["10.10.0.0/16"]
   }
 
 
@@ -64,7 +77,7 @@ resource "aws_security_group" "private_elasticsearch_sg" {
 
 resource "aws_instance" "elasticsearch_server" {
   ami             = "ami-07d8796a2b0f8d29c" 
-  # subnet_id       = module.network.private_subnet_a_id
+  subnet_id       = module.network.private_a_id
   instance_type   = "t2.medium"
   key_name        = "Team1KeyPair"
   vpc_security_group_ids = [aws_security_group.private_elasticsearch_sg.id]
