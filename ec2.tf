@@ -33,19 +33,10 @@ resource "aws_security_group" "public_sg" {
   }
 }
 
-data "aws_ami" "my_aws_ami" {
-    owners = ["137112412989"]
-    most_recent = true
-    filter {
-        name = "name"
-        values = [ "amzn2-ami-kernel-*" ]
-    }
-}
-
 resource "aws_instance" "kibana" {
-    ami = data.aws_ami.my_aws_ami.id
+    ami = "ami-07d8796a2b0f8d29c"
     instance_type = var.instance_type
-    key_name = var.keypair_name
+    key_name = "Team1KeyPair"
     subnet_id = module.network.public_subnet_a_id
     vpc_security_group_ids = [ aws_security_group.my_app_sg.id ]
 
