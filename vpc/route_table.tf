@@ -38,4 +38,4 @@ resource "aws_route_table_association" "private_rt_for_L_E" {
 resource "aws_route_table_association" "private_rt_for_test" {
     subnet_id      = aws_subnet.private_b.id
     route_table_id = aws_route_table.public_subnet_rt.id
-} 
+}
