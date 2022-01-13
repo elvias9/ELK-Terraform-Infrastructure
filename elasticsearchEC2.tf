@@ -1,6 +1,6 @@
 module "network" {
   source             = "./vpc"
-  public_name               = "my_vpc"
+  public_name        = "Kabana-Public-A"
   vpc_cidr           = "10.10.0.0/16"
   region             = "eu-west-1"
   vpc_name           = "ELK-Stack-VPC"
@@ -82,4 +82,8 @@ resource "aws_instance" "elasticsearch_server" {
   tags = {
     Name = "elasticsearch-server"
   }
+}
+
+output "elasticsearch_server_ip" {
+    value = aws_instance.elasticsearch_server.private_ip
 }
