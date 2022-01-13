@@ -1,4 +1,4 @@
-module "network" {
+module "kibana-network" {
   source = "./vpc"
   
   vpc_cidr         = "10.10.0.0/16"
@@ -14,7 +14,7 @@ module "network" {
 resource "aws_security_group" "kibana_sg" {
   name        = "kibana_sg"
   description = "Allow access to my Kibana Server"
-  vpc_id      = module.network.my_vpc_id
+  vpc_id      = module.kibana-network.my_vpc_id
 
   # INBOUND RULES
   ingress {
@@ -59,7 +59,7 @@ resource "aws_instance" "kibana" {
     ami = "ami-07d8796a2b0f8d29c"
     instance_type = "t2.medium"
     key_name = "Team1KeyPair"
-    subnet_id = module.network.public_subnet_a_id
+    subnet_id = module.kibana-network.public_subnet_a_id
     vpc_security_group_ids = [ aws_security_group.kibana_sg.id ]
 
     tags = {
