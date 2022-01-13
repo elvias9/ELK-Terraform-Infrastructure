@@ -48,7 +48,7 @@ variable "public_name" {
 
 #PRIVATE SUBNET
 variable "private_cidr_a" {
-  description = "CIDR of the private Subnet for Logstash and Elasticsearch"
+  description = "CIDR of the private Subnet for Logstash nd Elasticsearch"
   type = string
 }
 
