@@ -75,12 +75,11 @@ resource "aws_security_group" "private_elasticsearch_sg" {
 
 resource "aws_instance" "elasticsearch_server" {
   ami                    = "ami-07d8796a2b0f8d29c"
-  subnet_id              = module.network.private_a_id
+  subnet_id              = module.network.private_subnet_a_id
   instance_type          = "t2.medium"
   key_name               = "Team1KeyPair"
   vpc_security_group_ids = [aws_security_group.private_elasticsearch_sg.id]
   tags = {
     Name = "elasticsearch-server"
   }
-  depends_on = [module.network]
 }
