@@ -1,4 +1,4 @@
-module "network" {
+module "network_elasticsearch" {
   source             = "./vpc"
   public_name        = "Kabana-Public-A"
   vpc_cidr           = "10.10.0.0/16"
@@ -11,7 +11,7 @@ module "network" {
 }
 
 resource "aws_security_group" "private_elasticsearch_sg" {
-  vpc_id = module.network.my_vpc_id
+  vpc_id = module.network_elasticsearch.my_vpc_id
 
   # INBOUND RULES
   ingress {
@@ -75,7 +75,7 @@ resource "aws_security_group" "private_elasticsearch_sg" {
 
 resource "aws_instance" "elasticsearch_server" {
   ami                    = "ami-07d8796a2b0f8d29c"
-  subnet_id              = module.network.private_subnet_a_id
+  subnet_id              = module.network_elasticsearch.private_subnet_a_id
   instance_type          = "t2.medium"
   key_name               = "Team1KeyPair"
   vpc_security_group_ids = [aws_security_group.private_elasticsearch_sg.id]
