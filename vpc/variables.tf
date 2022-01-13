@@ -28,12 +28,6 @@ variable "instance_type" {
   default = "t2.medium"
 }
 
-# KEY PAIR
-variable "keypair_name" {
-  description = "The key pair name"
-  type = string
-}
-
 # SUBNET
 #PUBLIC SUBNET
 variable "public_cidr_a" {
@@ -48,7 +42,7 @@ variable "public_name" {
 
 #PRIVATE SUBNET
 variable "private_cidr_a" {
-  description = "CIDR of the private Subnet for Logstash nd Elasticsearch"
+  description = "CIDR of the private Subnet for Logstash and Elasticsearch"
   type = string
 }
 

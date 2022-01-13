@@ -8,7 +8,7 @@ resource "aws_vpc" "main_vpc" {
 }
 
 # INTERNET GATEWAY
-resource "aws_internet_gateway" "internet_gaateway" {
+resource "aws_internet_gateway" "internet_gateway" {
     vpc_id = aws_vpc.main_vpc.id
 
     tags = {
@@ -26,29 +26,6 @@ resource "aws_subnet" "public_a" {
     tags = {
         Name = var.public_name
     }
-}
-
-
-## PRIVATE subnet for Elastisearch, logstash
-resource "aws_subnet" "private_a" {
-  vpc_id     = aws_vpc.main_vpc.id
-  cidr_block = var.private_a_cidr
-  availability_zone = "${var.region}a"
-
-  tags = {
-    Name = "elk-private-a"
-  }
-}
-
-## PRIVATE Subnet for test
-resource "aws_subnet" "private_a" {
-  vpc_id     = aws_vpc.main_vpc.id
-  cidr_block = var.private_a_cidr
-  availability_zone = "${var.region}a"
-
-  tags = {
-    Name = "elk-private-b"
-  }
 }
 
 # ELASTIC IP _ PUBLIC NAT GATEWAY
@@ -72,3 +49,24 @@ resource "aws_nat_gateway" "nat_a" {
   depends_on = [aws_internet_gateway.internet_gateway]
 }
 
+## PRIVATE subnet for Elastisearch, logstash
+resource "aws_subnet" "private_a" {
+  vpc_id     = aws_vpc.main_vpc.id
+  cidr_block = var.private_cidr_a
+  availability_zone = "${var.region}a"
+
+  tags = {
+    Name = "elk-private-a"
+  }
+}
+
+## PRIVATE Subnet for test
+resource "aws_subnet" "private_b" {
+  vpc_id     = aws_vpc.main_vpc.id
+  cidr_block = var.private_cidr_b
+  availability_zone = "${var.region}a"
+
+  tags = {
+    Name = "elk-private-b"
+  }
+}
