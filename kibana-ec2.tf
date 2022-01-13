@@ -5,9 +5,9 @@ module "network" {
   region           = "eu-west-1"
   vpc_name         = "ELK-Stack-VPC"
   internet_gw_name = "team1-new-INT-GW"
-  public_cidr_a    = "10.10.0.0/24"
+  public_cidr_a    = "10.10.1.0/24"
   private_cidr_a = "10.10.2.0/24"
-  private_cidr_b = "10.10.4.0/24"
+  private_cidr_b = "10.10.3.0/24"
 }
 
 resource "aws_security_group" "kibana_sg" {
