@@ -12,41 +12,14 @@ resource "aws_security_group" "private_elasticsearch_sg" {
   }
 
   ingress {
-    description = "HTTP from VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    /* put the private subnet cidr  or VPC????*/
-    cidr_blocks = ["10.10.2.0/24"]
-  }
-
-  ingress {
     description = "elasticsearch port"
     from_port   = 9200
     to_port     = 9300
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.10.2.0/24"]
   }
 
   #OUTBOUND RULES
-
-  egress {
-    description = "allow HTTP access"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    description = "allow SSH access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    /* vpc cidr block */
-    cidr_blocks = ["10.10.0.0/16"]
-  }
-
 
   egress {
     description = "Allow access to the world"
@@ -71,8 +44,4 @@ resource "aws_instance" "elasticsearch_server" {
   tags = {
     Name = "elasticsearch-server"
   }
-}
-
-output "elasticsearch_server_ip" {
-    value = aws_instance.elasticsearch_server.private_ip
 }

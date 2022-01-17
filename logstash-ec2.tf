@@ -11,6 +11,13 @@ resource "aws_security_group" "my_app_sg" {
     protocol         = "tcp"
     cidr_blocks      = ["10.10.0.0/16"]
   }
+  ingress {
+    description      = "Beats from demo"
+    from_port        = 5044
+    to_port          = 5044
+    protocol         = "tcp"
+    cidr_blocks      = ["10.10.3.0/24"]
+  }
   egress {
       description = "Allow access to the world"
       from_port = 0
