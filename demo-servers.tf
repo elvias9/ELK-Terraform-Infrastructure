@@ -59,6 +59,7 @@ data "aws_ami" "demo_server_ami" {
 resource "aws_instance" "syslog" {
     ami = data.aws_ami.demo_server_ami.id
     instance_type = "t2.micro"
+    key_name = "Team1KeyPair"
     subnet_id = module.network.private_subnet_b_id
     vpc_security_group_ids = [ aws_security_group.demo_servers_sg.id ]
 
@@ -70,6 +71,7 @@ resource "aws_instance" "syslog" {
 resource "aws_instance" "apache" {
     ami = data.aws_ami.demo_server_ami.id
     instance_type = "t2.micro"
+    key_name = "Team1KeyPair"
     subnet_id = module.network.private_subnet_b_id
     vpc_security_group_ids = [ aws_security_group.demo_servers_sg.id ]
 
