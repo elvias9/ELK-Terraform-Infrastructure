@@ -33,7 +33,7 @@ resource "aws_security_group" "kibana_sg" {
     from_port        = 9200
     to_port          = 9200
     protocol         = "tcp"
-    cidr_blocks      = ["10.10.2.0/24"]
+    cidr_blocks      = ["10.10.0.0/16"]
   }
 
   #OUTBOUND RULES

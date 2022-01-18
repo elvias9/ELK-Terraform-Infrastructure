@@ -16,7 +16,7 @@ resource "aws_security_group" "my_app_sg" {
     from_port        = 5044
     to_port          = 5044
     protocol         = "tcp"
-    cidr_blocks      = ["10.10.3.0/24"]
+    cidr_blocks      = ["10.10.0.0/16"]
   }
   egress {
       description = "Allow access to the world"
