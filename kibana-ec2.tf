@@ -17,28 +17,85 @@ resource "aws_security_group" "kibana_sg" {
   vpc_id      = module.kibana-network.my_vpc_id
 
   # INBOUND RULES
+  # Ashley
   ingress {
-    description      = "SSH"
+    description      = "SSH - Ashley"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["81.106.56.65/32"]
   }
 
   ingress {
-    description      = "HTTP from internet"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description      = "Kibana server"
+    description      = "Kibana server - Ashley"
     from_port        = 5601
     to_port          = 5601
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["81.106.56.65/32"]
+  }
+  # Shane
+  ingress {
+    description      = "SSH - Shane"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["31.48.104.245/32"]
+  }
+
+  ingress {
+    description      = "Kibana server - Shane"
+    from_port        = 5601
+    to_port          = 5601
+    protocol         = "tcp"
+    cidr_blocks      = ["31.48.104.245/32"]
+  }
+  # Elvia
+  ingress {
+    description      = "SSH - Elvia"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["158.181.78.253/32"]
+  }
+
+  ingress {
+    description      = "Kibana server - Elvia"
+    from_port        = 5601
+    to_port          = 5601
+    protocol         = "tcp"
+    cidr_blocks      = ["158.181.78.253/32"]
+  }
+  # Courtney
+  ingress {
+    description      = "SSH - Courtney"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["217.35.224.217/32"]
+  }
+
+  ingress {
+    description      = "Kibana server - Courtney"
+    from_port        = 5601
+    to_port          = 5601
+    protocol         = "tcp"
+    cidr_blocks      = ["217.35.224.217/32"]
+  }
+  # Himat
+  ingress {
+    description      = "SSH - Himat"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["77.99.152.53/32"]
+  }
+
+  ingress {
+    description      = "Kibana server - Himat"
+    from_port        = 5601
+    to_port          = 5601
+    protocol         = "tcp"
+    cidr_blocks      = ["77.99.152.53/32"]
   }
 
   #OUTBOUND RULES
