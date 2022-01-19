@@ -42,9 +42,9 @@ EC2 setting up and configuring the security group including inbound and outcome 
 <br/><br/>
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
+## Region
 
-No requirements.
+eu-west-1
 
 ## Providers
 
@@ -56,10 +56,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_kibana-network"></a> [kibana-network](#module\_kibana-network) | ./vpc | n/a |
-| <a name="module_my-network"></a> [my-network](#module\_my-network) | ./vpc | n/a |
 | <a name="module_network"></a> [network](#module\_network) | ./vpc | n/a |
-| <a name="module_network_elasticsearch"></a> [network\_elasticsearch](#module\_network\_elasticsearch) | ./vpc | n/a |
 
 ## Resources
 
@@ -76,13 +73,5 @@ No requirements.
 | [aws_security_group.private_elasticsearch_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_ami.demo_server_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 
-## Inputs
 
-No inputs.
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_elasticsearch_server_ip"></a> [elasticsearch\_server\_ip](#output\_elasticsearch\_server\_ip) | n/a |
 <!-- END_TF_DOCS -->
