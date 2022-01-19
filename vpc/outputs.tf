@@ -13,3 +13,7 @@ output "private_subnet_a_id" {
 output "private_subnet_b_id" {
     value = aws_subnet.private_b.id
 }
+
+output "elastic_ip" {
+  value       = aws_eip.nat_a_eip.public_ip
+}
