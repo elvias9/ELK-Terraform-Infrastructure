@@ -29,10 +29,10 @@ jobs:
         id: validate
         run: terraform validate -json
 
-      - name: Plan
+      - name: Terraform Plan
         id: plan
         run: terraform plan
 
-      - name: Apply
+      - name: Terraform Apply
         id: apply
         run: terraform apply --auto-approve
