@@ -42,7 +42,7 @@ resource "aws_security_group" "kibana_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["158.181.77.37/32"]
+    cidr_blocks      = ["158.181.76.85/32"]
   }
 
   ingress {
@@ -50,7 +50,7 @@ resource "aws_security_group" "kibana_sg" {
     from_port        = 5601
     to_port          = 5601
     protocol         = "tcp"
-    cidr_blocks      = ["158.181.77.37/32"]
+    cidr_blocks      = ["158.181.76.85/32"]
   }
   # Courtney
   ingress {
