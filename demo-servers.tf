@@ -16,7 +16,7 @@ resource "aws_security_group" "demo_servers_sg" {
   description = "Allow access to my Demo Servers"
   vpc_id      = module.network.my_vpc_id
 
-    # INBOUND RULES
+    ### INBOUND RULES
   ingress {
     description      = "local SSH"
     from_port        = 22
